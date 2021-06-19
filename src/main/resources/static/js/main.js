@@ -55,6 +55,7 @@ todos.showAdd = function (){
     $('#formDemo')[0].reset();
     $('#id').val("");
     $('#myModal').modal('toggle');
+    $('#err-name').html("");
 }
 
 
@@ -70,6 +71,8 @@ todos.showUpdate = function (idTodo){
             $('#EndingDate').val(data.endDate);
             $('#status').val(data.status);
             $('#myModal').modal("toggle");
+            $('#err-name').html("");
+
         }
     });
 }
@@ -92,10 +95,9 @@ todos.save = function (){
                 console.log("update done");
                 $('#myModal').modal('hide');
                 todos.showListWork(0);
-
             },
-            error: function (data) {
-
+            error: function (err) {
+                $('#err-name').html(err.responseJSON.name);
             }
         });
     }
@@ -118,8 +120,8 @@ todos.save = function (){
                 todos.showListWork(0);
 
             },
-            error: function (data) {
-
+            error: function (err) {
+                $('#err-name').html(err.responseJSON.name);
             }
         });
     }

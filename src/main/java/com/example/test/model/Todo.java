@@ -3,8 +3,8 @@ package com.example.test.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-
 
 @Entity
 @Data
@@ -13,7 +13,7 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
+    @NotBlank(message = "Cannot be left blank")
     private String name;
 
     private LocalDate startDate;
